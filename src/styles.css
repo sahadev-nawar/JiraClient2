@@ -50,7 +50,7 @@ and (min-height : 1050px) and (max-height : 1280px){
 /* login form css from http://www.nextbootstrap.com/2016/12/bootstrap-4-login-form-free-code-example.html    */
 
 .nb-login{
-	max-width:300px;
+	max-width:400px;
 	margin:30px auto;
 	background:rgba(255,255,255,0.2);
 	padding:20px 25px;
