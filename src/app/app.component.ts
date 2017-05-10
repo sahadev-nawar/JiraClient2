@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges,OnDestroy } from '@angular/core';
+import { Component, OnInit, OnChanges, OnDestroy } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Router } from '@angular/router';
 import { LoginService } from './services/login.service';

@@ -2,10 +2,12 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { BulkCreateJiraComponent } from '../bulk-create-jira/bulk-create-jira.component';
+import { AuthorizeComponent } from '../authorize/authorize.component';
 
 
 const appRoutes: Routes = [
   { path: '', component: BulkCreateJiraComponent },
+  { path: 'login', component: AuthorizeComponent },
 ];
 @NgModule({
   imports: [
