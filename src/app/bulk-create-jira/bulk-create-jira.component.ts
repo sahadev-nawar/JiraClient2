@@ -7,6 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Http, Response } from '@angular/http';
 import { CreateJiraService } from '../services/create-jira.service';
 import * as _ from 'lodash';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -29,9 +30,26 @@ req_Jira: RequestJira[] = [];
 d_Jira: ResponseJira[] = [];
 jira_success: JiraCreated;
 some: Response;
+closeResult: string;
+  constructor(private createJiraService: CreateJiraService, private http: Http, private modalService: NgbModal) { }
 
-  constructor(private createJiraService: CreateJiraService, private http: Http) { }
+  open(content) {
+    this.modalService.open(content).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
 
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return  `with: ${reason}`;
+    }
+  }
   ngOnInit() {
     this.createJiraService.getMetadata()
         .subscribe(resData => this.r_Jira = resData,

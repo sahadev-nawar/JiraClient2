@@ -16,6 +16,7 @@ import 'hammerjs';
 import { BulkCreateJiraComponent } from './bulk-create-jira/bulk-create-jira.component';
 import { AuthorizeComponent } from './authorize/authorize.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
