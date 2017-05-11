@@ -5,17 +5,17 @@
                 <div class="card">
                     <div class="card-header" role="tab" id="headingOne">
                         <h5 class="mb-0 text-center">
-                             <button type="button" class="btn btn-default btn-sm float-left"  (click)="getData()"> 
+                             <button type="button" class="btn btn-default btn-sm float-left"  (click)="createJira()"> 
                                    Create Jira<i  style="vertical-align: middle !important;" class="material-icons" >add</i>
                             </button>
                             Pending Jira Issues 
                             <a data-toggle="collapse" class="float-right" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                    <i class="material-icons" >arrow_drop_down_circle</i>
+                                    <i class="material-icons" (click)="sortSupport()">arrow_drop_down_circle</i>
                             </a>
                           </h5>
                        
                     </div>
-                    <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
+                    <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne">
                         <div class="card-block">
                             <div class="scrollit"   >
                         <form class="ui form" #f1="ngForm">
@@ -29,7 +29,7 @@
                                     </tr>
                                 </thead>
                                 <tbody >
-                                    <tr *ngFor="let t of r_Jira;">
+                                    <tr *ngFor="let t of n_Jira;">
                                         <th scope="row"><input type="checkbox" (change)="jiraSelected(t['Incident ID'],$event)" [checked]="t.checked"></th>
                                         <td > {{ t['Incident ID'] }} </td>
                                         <td >{{ t.Title }}</td>

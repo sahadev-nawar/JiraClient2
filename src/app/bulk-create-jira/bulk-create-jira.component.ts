@@ -28,7 +28,7 @@ isjirasorted: boolean = false;
 req_Jira: RequestJira[] = [];
 d_Jira: ResponseJira[] = [];
 jira_success: JiraCreated;
-some: string;
+some: Response;
 
   constructor(private createJiraService: CreateJiraService, private http: Http) { }
 
@@ -75,6 +75,43 @@ some: string;
         }
 
         console.log(this.jiraSelectedList);
+    }
+    createJira() {
+                let a_Jira: ResponseJira = new ResponseJira();
+        if (this.allJiraSelected) {
+
+        }else {
+            this.jiraSelectedList.forEach(element => {
+             a_Jira = _.find(this.r_Jira, function(o){return o['Incident ID'] === element; });
+             this.d_Jira.push(a_Jira);
+            });
+            console.log("this is inside jira" + this.d_Jira);
+             //this.req_Jira.splice(0, this.req_Jira.length);
+             //this.req_Jira.length = 0;
+             for (let i = 0; i < this.d_Jira.length; i++) {
+                let request: RequestJira = new RequestJira();
+                request.fields.project.key = 'HPSHTOJ';
+                request.fields.summary = this.d_Jira[i].Title;
+                request.fields.description = this.d_Jira[i].Description;
+                //request.fields.issuetype.id = this.d_Jira[i]['Incident ID'];
+                //request.fields.issuetype.name = 'Task';
+                //request.fields.customfield_10002 = 'admin';
+                // // request.fields.components.components.forEach(e => {
+                // //  e.name = 'Kasia2';
+                // //  });
+                request.fields.assignee.name = this.d_Jira[i].Assignee;
+                request.fields.priority.id = 3;
+                this.req_Jira.push(request);
+             }
+             this.req_Jira.forEach(element => {
+                 console.log('element ' + JSON.stringify(element));
+                 this.createJiraService.createBulkJira(element)
+                 .subscribe(resData => this.some = resData,
+                   resErr => this.errMsg = resErr );
+             });
+            //console.log('response ' + JSON.parse(this.some));
+        }
+        console.log('record is trying to insert in jira ' + JSON.stringify(this.jira_success));
     }
 
 }
