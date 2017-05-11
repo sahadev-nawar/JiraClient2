@@ -1,7 +1,7 @@
 /* *******************************************below is for Dev****************************************** */
 
 export const Constant = {
-    baseURL: 'http://localhost:8078/',
+    baseURL: 'http://localhost:8045/',
     csvFileURL: 'src/assets/c_export.json'
 }
 

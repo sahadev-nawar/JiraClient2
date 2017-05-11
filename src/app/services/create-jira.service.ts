@@ -58,4 +58,13 @@ export class CreateJiraService {
         console.error(error);
         return Observable.throw(error || 'Server Error with Jira Creation');
     }
+    getData() {
+        let headers = new Headers();
+        headers.append('Access-Control-Allow-Origin', '*');
+        headers.append('Content-Type', 'text/plain');
+        let options = new RequestOptions({ headers: headers});
+        return this.http.get('http://localhost:8045/hello', options)
+        .map(res => res.text())
+        .catch(this.jiraFailed);
+    }
 }

@@ -1,3 +1,9 @@
+export class ReqJira {
+    req: ReqJira;
+    constructor() {
+        this.req = new ReqJira();
+    };
+}
 export class RequestJira {
     fields: Fields;
     constructor() {
@@ -40,6 +46,6 @@ export class Assignee {
     name: string;
 }
 export class Priority {
-    id: number;
+    id: string;
     name: string;
 }

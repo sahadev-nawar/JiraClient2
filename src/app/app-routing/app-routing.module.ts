@@ -6,7 +6,8 @@ import { AuthorizeComponent } from '../authorize/authorize.component';
 
 
 const appRoutes: Routes = [
-  { path: '', component: BulkCreateJiraComponent },
+  { path: '', component: AuthorizeComponent },
+  { path: '\bulkCreate', component: BulkCreateJiraComponent },
   { path: '\login', component: AuthorizeComponent },
 ];
 @NgModule({

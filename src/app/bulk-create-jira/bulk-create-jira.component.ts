@@ -77,41 +77,47 @@ some: Response;
         console.log(this.jiraSelectedList);
     }
     createJira() {
-                let a_Jira: ResponseJira = new ResponseJira();
+        let a_Jira: ResponseJira = new ResponseJira();
         if (this.allJiraSelected) {
 
         }else {
             this.jiraSelectedList.forEach(element => {
-             a_Jira = _.find(this.r_Jira, function(o){return o['Incident ID'] === element; });
-             this.d_Jira.push(a_Jira);
-            });
-            console.log("this is inside jira" + this.d_Jira);
-             //this.req_Jira.splice(0, this.req_Jira.length);
-             //this.req_Jira.length = 0;
+            a_Jira = _.find(this.r_Jira, function(o){return o['Incident ID'] === element; });
+            this.d_Jira.push(a_Jira);
+        });
+        console.log("this is selected Jira " + this.d_Jira);
+
              for (let i = 0; i < this.d_Jira.length; i++) {
                 let request: RequestJira = new RequestJira();
-                request.fields.project.key = 'HPSHTOJ';
+                request.fields.project.key = 'HPSMTOJ';
                 request.fields.summary = this.d_Jira[i].Title;
                 request.fields.description = this.d_Jira[i].Description;
-                //request.fields.issuetype.id = this.d_Jira[i]['Incident ID'];
-                //request.fields.issuetype.name = 'Task';
-                //request.fields.customfield_10002 = 'admin';
-                // // request.fields.components.components.forEach(e => {
-                // //  e.name = 'Kasia2';
-                // //  });
-                request.fields.assignee.name = this.d_Jira[i].Assignee;
-                request.fields.priority.id = 3;
+                request.fields.issuetype.name = 'Bug';
+                request.fields.issuetype.id = '10000';
+                request.fields.customfield_10002 = 'admin';
+                //request.fields.assignee.name = this.d_Jira[i].Assignee;
+                request.fields.assignee.name = '';
+                request.fields.priority.id = '3';
                 this.req_Jira.push(request);
              }
              this.req_Jira.forEach(element => {
-                 console.log('element ' + JSON.stringify(element));
+                 console.log('this is made jira for Rest ' + JSON.stringify(element));
                  this.createJiraService.createBulkJira(element)
                  .subscribe(resData => this.some = resData,
-                   resErr => this.errMsg = resErr );
+                            resErr => this.errMsg = resErr);
+                            console.log(JSON.stringify(this.some));
              });
             //console.log('response ' + JSON.parse(this.some));
         }
         console.log('record is trying to insert in jira ' + JSON.stringify(this.jira_success));
+    }
+    getdata() {
+        let test: string;
+        this.createJiraService.getData()
+                 .subscribe( data => {
+                     test = data;
+                    console.log(test);
+                });
     }
 
 }

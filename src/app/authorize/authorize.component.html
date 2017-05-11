@@ -1,15 +1,15 @@
 
 
-<div style="background:#036;margin-top:15% " class="nb-login">
+<div style="background:#036;margin-top:15% " class="nb-login" >
 	<h3 class="scenter">Log In</h3>
-	<form id="test">
+	<form id="test" novalidate [formGroup]="AuthForm">
 		<div class="form-group">
-			<input type="email" class="form-control" placeholder="Enter Email" required />
+			<input type="email" class="form-control" placeholder="Enter Username" required formControlName="username"/>
 		</div>
 		<div class="form-group">
-			<input type="password" class="form-control" placeholder="Enter Password" required />
+			<input type="password" class="form-control" placeholder="Enter Password" required formControlName="password"/>
 		</div>  
-		<button type="submit"  class="btn btn-block">Sign In</button>
+		<button type="submit"  class="btn btn-block" (click) = "loginForSingle()">Sign In</button>
 	</form>
 </div>
 
