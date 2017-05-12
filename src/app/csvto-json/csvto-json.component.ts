@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { UploadCSVService } from '../services/upload-csv.service';
 import { ResponseJira } from '../object/response-jira';
@@ -11,9 +11,11 @@ import { ResponseJira } from '../object/response-jira';
 })
 export class CSVToJsonComponent implements OnInit {
   closeResult: string;
-  @ViewChild('fileInput') fileInput;
+  @ViewChild('fileInput') fileInput: ElementRef;
   test: ResponseJira[];
+
   constructor(private modalService: NgbModal, private uploadCSVService: UploadCSVService) { }
+
   open(content) {
     this.modalService.open(content).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
@@ -34,7 +36,7 @@ export class CSVToJsonComponent implements OnInit {
   ngOnInit() {
   }
   addFile(): void {
-    console.log('inside uplad method');
+    console.log('inside uplad method' + this.fileInput);
     let fi = this.fileInput.nativeElement;
     if (fi.files && fi.files[0]) {
         let fileToUpload = fi.files[0];
