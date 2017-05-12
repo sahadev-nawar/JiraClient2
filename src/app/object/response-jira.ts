@@ -15,4 +15,5 @@ export class ResponseJira {
         'Last Updated By': string;
         'Description': string;
         'Alert Status': string;
+        'jiraCreated': string;
 }

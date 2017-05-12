@@ -1,9 +1,3 @@
-export class ReqJira {
-    req: ReqJira;
-    constructor() {
-        this.req = new ReqJira();
-    };
-}
 export class RequestJira {
     fields: Fields;
     constructor() {

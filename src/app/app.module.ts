@@ -15,6 +15,7 @@ import 'hammerjs';
 
 import { BulkCreateJiraComponent } from './bulk-create-jira/bulk-create-jira.component';
 import { AuthorizeComponent } from './authorize/authorize.component';
+import { CSVToJsonComponent } from './csvto-json/csvto-json.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { AuthorizeComponent } from './authorize/authorize.component';
     AppComponent,
     BulkCreateJiraComponent,
     routingComponents,
-    AuthorizeComponent
+    AuthorizeComponent,
+    CSVToJsonComponent
   ],
   imports: [
     BrowserModule,

@@ -8,7 +8,9 @@ import { Http, Response } from '@angular/http';
 import { CreateJiraService } from '../services/create-jira.service';
 import * as _ from 'lodash';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-
+import { JiraHpsmMap } from '../object/jira-hpsm';
+import { CSVToJsonComponent } from '../csvto-json/csvto-json.component';
+import {AuthorizeComponent} from '../authorize/authorize.component';
 
 @Component({
   selector: 'app-bulk-create-jira',
@@ -31,6 +33,9 @@ d_Jira: ResponseJira[] = [];
 jira_success: JiraCreated;
 some: Response;
 closeResult: string;
+jira_Response: JiraCreated;
+list_Jira_Created: JiraHpsmMap[] = [];
+jiraHpsm: JiraHpsmMap;
   constructor(private createJiraService: CreateJiraService, private http: Http, private modalService: NgbModal) { }
 
   open(content) {
@@ -96,6 +101,7 @@ closeResult: string;
     }
     createJira() {
         let a_Jira: ResponseJira = new ResponseJira();
+        let test: string;
         if (this.allJiraSelected) {
 
         }else {
@@ -119,15 +125,23 @@ closeResult: string;
                 this.req_Jira.push(request);
              }
              this.req_Jira.forEach(element => {
-                 console.log('this is made jira for Rest ' + JSON.stringify(element));
                  this.createJiraService.createBulkJira(element)
-                 .subscribe(resData => this.some = resData,
-                            resErr => this.errMsg = resErr);
-                            console.log(JSON.stringify(this.some));
+                 .subscribe( data => {
+                     test = data;
+                    console.log('real result ' + test);
+                    this.jira_Response = JSON.parse(test);
+                    console.log('Json response: ' + JSON.stringify(this.jira_Response));
+                    if (this.jira_Response === null) {
+                        console.log('jira response is null');
+                    }else {
+                        let done = JiraCreated [100] = [];
+                        done.push(this.jira_Response);
+                        console.log(JSON.stringify(this.jira_Response.key));
+                        this.mapdata(element, this.jira_Response.key);
+                    }
+                });
              });
-            //console.log('response ' + JSON.parse(this.some));
         }
-        console.log('record is trying to insert in jira ' + JSON.stringify(this.jira_success));
     }
     getdata() {
         let test: string;
@@ -136,6 +150,24 @@ closeResult: string;
                      test = data;
                     console.log(test);
                 });
+    }
+    mapdata(req: RequestJira, res: string ) {
+        if (req != null) {
+            let jirahpsm: JiraHpsmMap =  new JiraHpsmMap();
+            console.log('i am raching in here');
+            jirahpsm.Hpsm_id = req.fields.summary;
+            jirahpsm.Jira_id = res;
+            this.list_Jira_Created.push(jirahpsm);
+            console.log(JSON.stringify(this.list_Jira_Created));
+            this.n_Jira.forEach(element => {
+                if (element.Title === jirahpsm.Hpsm_id) {
+                    element.jiraCreated = jirahpsm.Jira_id;
+                }
+            });
+        }
+    }
+    uploadCSV() {
+
     }
 
 }

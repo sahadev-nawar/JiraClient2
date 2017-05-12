@@ -36,7 +36,7 @@ export class CreateJiraService {
     authorize(u: string, p: string) {
         console.log(u , p);
     }
-    createBulkJira(jira: RequestJira): Observable<Response> {
+    createBulkJira(jira: RequestJira): Observable<string> {
         this.username = 'admin';
         this.password = 'admin';
         const encode: string = btoa(this.username + ':' + this.password);
@@ -45,13 +45,11 @@ export class CreateJiraService {
         const headers = new Headers();
         headers.append('Content-Type', 'text/plain');
         headers.append('Access-Control-Allow-Origin', '*');
-
-        //headers.append('Accept', 'application/json');
-        //headers.append('Authorization', 'Basic '  + btoa(this.username + ':' + this.password));
+        headers.append('Accept', 'text/plain');
 
         const options = new RequestOptions({ headers: headers});
         return this.http.post(jiraCreationURL, body, options)
-        .map((res: Response) => res.json())
+        .map(res => res.text())
         .catch(this.jiraFailed);
     }
     jiraFailed(error: Response) {
@@ -60,10 +58,12 @@ export class CreateJiraService {
     }
     getData() {
         let headers = new Headers();
+        const a: string = 'darshan';
+        //headers.append('Content-Type', 'text/plain');
         headers.append('Access-Control-Allow-Origin', '*');
         headers.append('Content-Type', 'text/plain');
         let options = new RequestOptions({ headers: headers});
-        return this.http.get('http://localhost:8045/hello', options)
+        return this.http.post('http://localhost:8045/hello', a, options)
         .map(res => res.text())
         .catch(this.jiraFailed);
     }
