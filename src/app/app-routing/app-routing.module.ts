@@ -8,7 +8,7 @@ import {CSVToJsonComponent } from '../csvto-json/csvto-json.component';
 
 const appRoutes: Routes = [
   { path: '', component: AuthorizeComponent },
-  { path: '\bulkCreate', component: BulkCreateJiraComponent },
+  { path: 'bulkCreate', component: BulkCreateJiraComponent },
   { path: '\login', component: AuthorizeComponent },
   { path: '\get', component: CSVToJsonComponent }
 ];

@@ -19,7 +19,7 @@ export class UploadCSVService {
 
     const options = new RequestOptions({ headers: headers});
     return this.http.post(Constant.baseURL + '/convert', input)
-                    .map(res => res.text())
+                    .map(res => res.json())
                     .catch(this.jiraFailed);
   }
   jiraFailed(error: Response) {

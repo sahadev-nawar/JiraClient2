@@ -7,10 +7,10 @@
     </div>-->
         <!-- ----------------------  Pending Jira Issues Table started--------------------- -->
     <div class="row">
-        <div class="col-md-1 col-lg-2 col-xs-2">
+        <!--<div class="col-md-3 col-lg-3 col-xs-3">
            <app-csvto-json> loading... </app-csvto-json> 
-        </div>
-        <div class="col-md-12 col-lg-12 col-xs-12">
+        </div>-->
+        <div class="col-md-12 col-lg-12 col-xs-12app">
                 <div id="accordion" role="tablist" aria-multiselectable="true">
                     <div class="card">
                         <div class="card-header" role="tab" id="headingOne">
@@ -20,12 +20,13 @@
                                 </button>
                                 Pending Jira Issues 
                                 <a data-toggle="collapse" class="float-right" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                        <i class="material-icons" (click)="sortSupport()">arrow_drop_down_circle</i>
+                                        <!--<i class="material-icons" (click)="sortSupport()">arrow_drop_down_circle</i>-->
+                                        
                                 </a>
-                            </h5>
-                        
+                               <button md-icon-button md-primary  class="float-right" (click)="sortSupport()"> <i class="material-icons">autorenew</i></button>
+                                <app-csvto-json> loading... </app-csvto-json>                            </h5>
                         </div>
-                        <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                        <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
                             <div class="card-block">
                                 <div class="scrollit"   >
                             <form class="ui form" #f1="ngForm">
@@ -42,7 +43,7 @@
                                     <tbody >
                                         <tr *ngFor="let t of n_Jira;">
                                             <th scope="row"><input type="checkbox" (change)="jiraSelected(t['Incident ID'],$event)" [checked]="t.checked"></th>
-                                            <th scope="row"><button md-icon-button><i class="material-icons orange600">info_outline</i></button></th>
+                                            <th scope="row"><button md-icon-button (click)="open(content,t['Incident ID'],$event)"><i class="material-icons orange600">info_outline</i></button></th>
                                             <td > {{ t['Incident ID'] }} </td>
                                             <td >{{ t.Title }}</td>
                                             <td >{{t.jiraCreated}}</td>
@@ -53,6 +54,21 @@
                             </form>
                         </div>
                         </div> 
+                        <!-- -------------- code for info window modal ------------------ -->
+                        <ng-template #content let-c="close" let-d="dismiss">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Modal title</h4>
+                                <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p>One fine body&hellip;</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
+                            </div>
+                        </ng-template>
                         </div>
                 </div>
             </div>

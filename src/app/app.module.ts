@@ -25,7 +25,7 @@ import { CSVToJsonComponent } from './csvto-json/csvto-json.component';
     routingComponents,
     AuthorizeComponent,
     CSVToJsonComponent
-  ],
+      ],
   imports: [
     BrowserModule,
     FormsModule,

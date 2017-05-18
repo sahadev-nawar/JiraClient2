@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewChecked } from '@angular/core';
 import { ResponseJira } from '../object/response-jira';
 import { RequestJira } from '../object/request-jira';
 import { JiraCreated } from '../object/jira-created';
@@ -38,12 +38,10 @@ list_Jira_Created: JiraHpsmMap[] = [];
 jiraHpsm: JiraHpsmMap;
   constructor(private createJiraService: CreateJiraService, private http: Http, private modalService: NgbModal) { }
 
-  open(content) {
-    this.modalService.open(content).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
+  open(content, list: string , event: any) {
+
+                this.modalService.open(content, { windowClass: 'dark-modal' });
+
   }
 
   private getDismissReason(reason: any): string {
@@ -56,9 +54,17 @@ jiraHpsm: JiraHpsmMap;
     }
   }
   ngOnInit() {
-    this.createJiraService.getMetadata()
-        .subscribe(resData => this.r_Jira = resData,
-                   resErr => this.errMsg = resErr );
+    // this.createJiraService.getMetadata()
+    //     .subscribe(resData => this.r_Jira = resData,
+    //                resErr => this.errMsg = resErr );
+    // let csvtojson: CSVToJsonComponent;
+    // this.r_Jira = csvtojson.getConvertedCSVInJson();
+  }
+  ngAfterViewChecked() {
+    let csvtojson: CSVToJsonComponent = new CSVToJsonComponent(null, null);
+    this.r_Jira = JSON.parse(localStorage.getItem('r_Jira'));
+    //console.log(JSON.stringify("this is in ngOnInit "+this.r_Jira));
+    this.isjirasorted = false;
   }
   checkAll(event: any) {
         if (event.target.checked){
@@ -85,11 +91,11 @@ jiraHpsm: JiraHpsmMap;
                 this.n_Jira.push(element);
            }
         });
-        console.log(this.n_Jira);
+        console.log('this is sorted ones'+JSON.stringify(this.n_Jira));
         this.isjirasorted = true;
         }
     }
-    jiraSelected(list: string , event: any){
+    jiraSelected(list: string , event: any) {
         if (event.target.checked) {
                 this.jiraSelectedList.push(list);
         } else {

@@ -29,8 +29,7 @@ export class AuthorizeComponent implements OnInit {
     });
   }
   redirect() {
-    alert('Authorization is Successfull');
-    this.router.navigate(['\bulkCreate']);
+    this.router.navigate(['bulkCreate']);
   }
   loginForSingle() {
     if (this.logon.login(this.AuthForm.get('username').value, this.AuthForm.get('password').value)) {
