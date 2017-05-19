@@ -1,4 +1,4 @@
-
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 
 
 
@@ -124,3 +124,13 @@ and (min-height : 1050px) and (max-height : 1280px){
 /* -----------------------  login form ended -----------------------   */
 /* -----------------------  Material Icon  -----------------------   */
 .material-icons.orange600 { color: lightseagreen; }
+.logout{
+  color: #d50000;
+}
+.login{
+	color: olive;
+}
+.page{
+	background-color: aquamarine;
+}
+

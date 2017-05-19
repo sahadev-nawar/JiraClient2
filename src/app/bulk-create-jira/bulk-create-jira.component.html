@@ -1,15 +1,7 @@
-    <!--<div class="row" >
-        <!-- ----------------------  Upload CSV File---------------------     
-        <div class="col-md-12 col-lg-12 col-xs-12" >
+ <!-- ----------------------  Pending Jira Issues Table started--------------------- -->
 
-    <app-csvto-json> loading... </app-csvto-json>
-            </div>
-    </div>-->
-        <!-- ----------------------  Pending Jira Issues Table started--------------------- -->
     <div class="row">
-        <!--<div class="col-md-3 col-lg-3 col-xs-3">
-           <app-csvto-json> loading... </app-csvto-json> 
-        </div>-->
+            <md-spinner *ngIf = "in_Progress_Spinner"></md-spinner>
         <div class="col-md-12 col-lg-12 col-xs-12app">
                 <div id="accordion" role="tablist" aria-multiselectable="true">
                     <div class="card">
@@ -18,14 +10,19 @@
                                 <button type="button" class="btn btn-default btn-sm float-left"  (click)="createJira()"> 
                                     Create Jira<i  style="vertical-align: middle !important;" class="material-icons" >add</i>
                                 </button>
-                                Pending Jira Issues 
+                                    Pending Jira Issues 
                                 <a data-toggle="collapse" class="float-right" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                                         <!--<i class="material-icons" (click)="sortSupport()">arrow_drop_down_circle</i>-->
                                         
-                                </a>
-                               <button md-icon-button md-primary  class="float-right" (click)="sortSupport()"> <i class="material-icons">autorenew</i></button>
-                                <app-csvto-json> loading... </app-csvto-json>                            </h5>
+                                </a> 
+                                
+                                <label md-icon-button md-primary class="float-right" (click)="sortSupport()" *ngIf="!isjirasorted"> 
+                                   <span mdTooltip="Sync"> <i class="material-icons" style="padding-left: 1em;padding-right: 1em;">autorenew</i></span>
+                                </label>
+                                <app-csvto-json> loading... </app-csvto-json>
+                            </h5>
                         </div>
+                        
                         <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
                             <div class="card-block">
                                 <div class="scrollit"   >
@@ -49,21 +46,24 @@
                                             <td >{{t.jiraCreated}}</td>
                                         </tr>
                                     </tbody>
+                                    <ngb-alert [dismissible]="true" *ngIf="!is_csv_uploaded">
+                                            <strong>Warning!</strong> {{record_not_available}}
+                                        </ngb-alert>
                                 </table>
                                 <router-outlet></router-outlet>
                             </form>
                         </div>
                         </div> 
-                        <!-- -------------- code for info window modal ------------------ -->
+<!-- ----------------------------------- code for info window modal ------------------------------------------------------- -->
                         <ng-template #content let-c="close" let-d="dismiss">
                             <div class="modal-header">
-                                <h4 class="modal-title">Modal title</h4>
+                                <h4 class="modal-title">Coming Soon...</h4>
                                 <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
                                 <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <p>One fine body&hellip;</p>
+                                <p><app-coming-soon>Loading ...</app-coming-soon></p>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
