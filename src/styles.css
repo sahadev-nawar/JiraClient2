@@ -125,12 +125,30 @@ and (min-height : 1050px) and (max-height : 1280px){
 /* -----------------------  Material Icon  -----------------------   */
 .material-icons.orange600 { color: lightseagreen; }
 .logout{
-  color: #d50000;
+  color: darkred;
+}
+.logout:hover{
+  background-color: black;
+  color: red;
 }
 .login{
 	color: olive;
 }
 .page{
 	background-color: aquamarine;
+}
+.link:hover{
+	color: darkred;
+	text-shadow: #666;
+}
+.icon:hover{
+	color: black;
+	background-color: darkgray;
+}
+.fixed{
+	position: absolute !important;
+}
+.onlyicon:hover{
+	color:deepskyblue;
 }
 

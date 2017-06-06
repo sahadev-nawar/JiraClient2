@@ -1,7 +1,7 @@
  <!-- ----------------------  Pending Jira Issues Table started--------------------- -->
+            <md-progress-bar *ngIf = "in_Progress_Spinner"  mode="indeterminate" color="accent" ></md-progress-bar>
 
     <div class="row">
-            <md-spinner *ngIf = "in_Progress_Spinner"></md-spinner>
         <div class="col-md-12 col-lg-12 col-xs-12app">
                 <div id="accordion" role="tablist" aria-multiselectable="true">
                     <div class="card">
@@ -17,7 +17,7 @@
                                 </a> 
                                 
                                 <label md-icon-button md-primary class="float-right" (click)="sortSupport()" *ngIf="!isjirasorted"> 
-                                   <span mdTooltip="Sync"> <i class="material-icons" style="padding-left: 1em;padding-right: 1em;">autorenew</i></span>
+                                   <span mdTooltip="Sync"> <i class="material-icons onlyicon" style="padding-left: 1em;padding-right: 1em;">autorenew</i></span>
                                 </label>
                                 <app-csvto-json> loading... </app-csvto-json>
                             </h5>
@@ -33,17 +33,19 @@
                                             <th width="5%" ><input type="checkbox" (change)="checkAll($event)"/></th>
                                             <th width="5%">info</th>
                                             <th width="15%" >Incident no.</th>
-                                            <th width="45%">Title</th>
-                                            <th width="30%">Jira Created</th>
+                                            <th width="35%">Title</th>
+                                            <th width="10%">Jira Created</th>
+                                            <th width="30%">Attachment</th>
                                         </tr>
                                     </thead>
                                     <tbody >
                                         <tr *ngFor="let t of n_Jira;">
-                                            <th scope="row"><input type="checkbox" (change)="jiraSelected(t['Incident ID'],$event)" [checked]="t.checked"></th>
-                                            <th scope="row"><button md-icon-button (click)="open(content,t['Incident ID'],$event)"><i class="material-icons orange600">info_outline</i></button></th>
+                                            <td scope="row"><input type="checkbox" (change)="jiraSelected(t['Incident ID'],$event)" [checked]="t.checked"></td>
+                                            <td scope="row"><button md-icon-button (click)="open(content,t['Incident ID'],$event)"><i class="material-icons orange600">info_outline</i></button></td>
                                             <td > {{ t['Incident ID'] }} </td>
                                             <td >{{ t.Title }}</td>
-                                            <td >{{t.jiraCreated}}</td>
+                                            <td ><span mdTooltip="Click for Attachement"><a href="https://daredkar.atlassian.net/browse/{{t.jiraCreated}}" class="link" target="_blank">{{t.jiraCreated}}</a></span></td>
+                                            <td ></td>
                                         </tr>
                                     </tbody>
                                     <ngb-alert [dismissible]="true" *ngIf="!is_csv_uploaded">

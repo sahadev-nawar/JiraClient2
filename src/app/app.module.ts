@@ -12,11 +12,14 @@ import {MaterialModule} from '@angular/material';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {MdButtonModule, MdCheckboxModule} from '@angular/material';
 import 'hammerjs';
+import { Ng2FileInputModule } from 'ng2-file-input';
 
-import { BulkCreateJiraComponent } from './bulk-create-jira/bulk-create-jira.component';
-import { AuthorizeComponent } from './authorize/authorize.component';
-import { CSVToJsonComponent } from './csvto-json/csvto-json.component';
-import { ComingSoonComponent } from './coming-soon/coming-soon.component';
+import { BulkCreateJiraComponent } from './components/bulk-create-jira/bulk-create-jira.component';
+import { AuthorizeComponent } from './components/authorize/authorize.component';
+import { CSVToJsonComponent } from './components/csvto-json/csvto-json.component';
+import { ComingSoonComponent } from './components/coming-soon/coming-soon.component';
+import { DragNDropDirective } from './directives/drag-ndrop.directive';
+import { DragAndDropComponent } from './components/drag-and-drop/drag-and-drop.component';
 
 
 @NgModule({
@@ -26,7 +29,9 @@ import { ComingSoonComponent } from './coming-soon/coming-soon.component';
     routingComponents,
     AuthorizeComponent,
     CSVToJsonComponent,
-    ComingSoonComponent
+    ComingSoonComponent,
+    DragNDropDirective,
+    DragAndDropComponent,
       ],
   imports: [
     BrowserModule,
@@ -39,7 +44,7 @@ import { ComingSoonComponent } from './coming-soon/coming-soon.component';
     MaterialModule,
     BrowserAnimationsModule,
     NoopAnimationsModule,
-    MdButtonModule, MdCheckboxModule,
+    MdButtonModule, MdCheckboxModule, Ng2FileInputModule.forRoot(),
 
   ],
   providers: [],

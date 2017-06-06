@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { UploadCSVService } from '../services/upload-csv.service';
-import { ResponseJira } from '../object/response-jira';
+import { UploadCSVService } from '../../services/upload-csv.service';
+import { ResponseJira } from '../../object/response-jira';
 import { Observable } from 'rxjs/Observable';
 
 @Component({

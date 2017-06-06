@@ -1,14 +1,14 @@
 import { Component, OnInit, AfterViewChecked } from '@angular/core';
-import { ResponseJira } from '../object/response-jira';
-import { RequestJira } from '../object/request-jira';
-import { JiraCreated } from '../object/jira-created';
+import { ResponseJira } from '../../object/response-jira';
+import { RequestJira } from '../../object/request-jira';
+import { JiraCreated } from '../../object/jira-created';
 import { Observable } from 'rxjs/Observable';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Http, Response } from '@angular/http';
-import { CreateJiraService } from '../services/create-jira.service';
+import { CreateJiraService } from '../../services/create-jira.service';
 import * as _ from 'lodash';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { JiraHpsmMap } from '../object/jira-hpsm';
+import { JiraHpsmMap } from '../../object/jira-hpsm';
 import { CSVToJsonComponent } from '../csvto-json/csvto-json.component';
 import {AuthorizeComponent} from '../authorize/authorize.component';
 import { ComingSoonComponent } from '../coming-soon/coming-soon.component';
@@ -119,8 +119,8 @@ is_csv_uploaded: boolean = true;
             a_Jira = _.find(this.r_Jira, function(o){return o['Incident ID'] === element; });
             this.d_Jira.push(a_Jira);
         });
-        //console.log("this is selected Jira " + this.d_Jira);
-
+        console.log("this is selected Jira " + this.d_Jira);
+        console.log("this is a_Jira " + a_Jira);
              for (let i = 0; i < this.d_Jira.length; i++) {
                 let request: RequestJira = new RequestJira();
                 request.fields.project.key = 'HPSMTOJ';
@@ -141,6 +141,7 @@ is_csv_uploaded: boolean = true;
                         console.log('Json response: ' + JSON.stringify(this.jira_Response));
                         if (this.jira_Response === null) {
                             console.log('jira response is null');
+                            alert('Jira server is down');
                         }else {
                             this.in_Progress_Spinner = false;
                             let done = JiraCreated [100] = [];
