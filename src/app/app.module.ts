@@ -20,6 +20,7 @@ import { CSVToJsonComponent } from './components/csvto-json/csvto-json.component
 import { ComingSoonComponent } from './components/coming-soon/coming-soon.component';
 import { DragNDropDirective } from './directives/drag-ndrop.directive';
 import { DragAndDropComponent } from './components/drag-and-drop/drag-and-drop.component';
+import { JiraInDetailsComponent } from './components/jira-in-details/jira-in-details.component';
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import { DragAndDropComponent } from './components/drag-and-drop/drag-and-drop.c
     ComingSoonComponent,
     DragNDropDirective,
     DragAndDropComponent,
+    JiraInDetailsComponent,
       ],
   imports: [
     BrowserModule,

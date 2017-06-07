@@ -34,8 +34,8 @@
                                             <th width="5%">info</th>
                                             <th width="15%" >Incident no.</th>
                                             <th width="35%">Title</th>
-                                            <th width="10%">Jira Created</th>
-                                            <th width="30%">Attachment</th>
+                                            <th width="20%">Jira Created</th>
+                                            <th width="10%">Attachment</th>
                                         </tr>
                                     </thead>
                                     <tbody >
@@ -45,7 +45,7 @@
                                             <td > {{ t['Incident ID'] }} </td>
                                             <td >{{ t.Title }}</td>
                                             <td ><span mdTooltip="Click for Attachement"><a href="https://daredkar.atlassian.net/browse/{{t.jiraCreated}}" class="link" target="_blank">{{t.jiraCreated}}</a></span></td>
-                                            <td ></td>
+                                            <td ><app-jira-in-details style="padding-left: 3em;"></app-jira-in-details></td>
                                         </tr>
                                     </tbody>
                                     <ngb-alert [dismissible]="true" *ngIf="!is_csv_uploaded">

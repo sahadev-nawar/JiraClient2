@@ -67,4 +67,17 @@ export class CreateJiraService {
         .map(res => res.text())
         .catch(this.jiraFailed);
     }
+    uploadAttachment(issueId: string, file: any) {
+        let input = new FormData();
+        input.append('file', file);
+        const headers = new Headers();
+        headers.append('Content-Type', 'multipart/form-data');
+        headers.append('Access-Control-Allow-Origin', '*');
+        headers.append('Accept', 'text/plain');
+
+        const options = new RequestOptions({ headers: headers});
+        return this.http.post(Constant.baseURL + '/attachment/' + issueId, input)
+                    .map(res => res.json())
+                    .catch(this.jiraFailed);
+    }
 }
