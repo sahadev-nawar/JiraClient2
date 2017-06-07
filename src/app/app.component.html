@@ -1,3 +1,47 @@
-<h1>
-  {{title}}
-</h1>
+<div class="container-fluid">
+<div class="col-md-12 col-lg-12 col-xs-12">
+ <nav md-tab-nav-bar style="background: whitesmoke">
+   <h3 href="#" style="color: darkolivegreen; padding-left: 1em">HPSM <i class="material-icons" >repeat</i> Jira 
+    <a md-tab-link
+     [routerLink]="['/login']"
+     routerLinkActive #rla="routerLinkActive"
+     [active]="rla.isActive"
+     *ngIf = "loggedIn"
+     (click) = "logout()" class="float-right">
+     <span mdTooltip="Loguot"><i class="material-icons logout" style="font-size: 48px;">power_settings_new</i></span>
+    </a>
+  </h3>
+ </nav>
+</div>
+</div>
+<div class="container-fluid">
+<div class="col-md-12 col-lg-12 col-xs-12">
+ <nav md-tab-nav-bar>
+  <label md-tab-link
+     [routerLink]="['/login']"
+     routerLinkActive #rla="routerLinkActive"
+     [active]="rla.isActive"
+     *ngIf = "!loggedIn">
+    <span mdTooltip="Login"><i class="material-icons login" md-68 style="font-size: 48px;">&#xE853;</i></span>
+     <!--Login-->
+  </label>
+   <label md-tab-link
+     [routerLink]="['bulkCreate']"
+     routerLinkActive #rla="routerLinkActive"
+     [active]="rla.isActive"
+     *ngIf = "loggedIn" class="icon">
+     <i class="material-icons" style="padding-right: 0.5em">cloud_upload</i>Bulk Create
+   </label>
+   <label md-tab-link
+     [routerLink]="['/comingsoon']"
+     routerLinkActive #rla="routerLinkActive"
+     [active]="rla.isActive"
+     *ngIf = "loggedIn" class="icon">
+     <i class="material-icons" style="padding-right: 0.5em">autorenew</i>Sync Activity
+   </label>
+</nav>
+</div>
+</div>
+<div class="container-fluid">
+  <router-outlet></router-outlet>
+  </div>
