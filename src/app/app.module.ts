@@ -49,7 +49,8 @@ import { JiraInDetailsComponent } from './components/jira-in-details/jira-in-det
     MdButtonModule, MdCheckboxModule, Ng2FileInputModule.forRoot(),
 
   ],
-  providers: [],
+  providers: [
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

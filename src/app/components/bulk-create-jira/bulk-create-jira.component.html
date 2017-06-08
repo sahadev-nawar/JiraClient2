@@ -45,7 +45,11 @@
                                             <td > {{ t['Incident ID'] }} </td>
                                             <td >{{ t.Title }}</td>
                                             <td ><span mdTooltip="Click for Attachement"><a href="https://daredkar.atlassian.net/browse/{{t.jiraCreated}}" class="link" target="_blank">{{t.jiraCreated}}</a></span></td>
-                                            <td ><app-jira-in-details style="padding-left: 3em;"></app-jira-in-details></td>
+                                            <td> <label for="upload" class="float-right">
+                                                    <span mdTooltip="Upload CSV"><i class="material-icons onlyicon" aria-hidden="true" style="padding-left: 1em;">file_upload</i></span>
+                                                    <input #fileInput type="file" id="upload" style="display:none" (change)="addFile()">
+                                                </label>
+                                            </td>
                                         </tr>
                                     </tbody>
                                     <ngb-alert [dismissible]="true" *ngIf="!is_csv_uploaded">

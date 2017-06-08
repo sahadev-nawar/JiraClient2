@@ -189,4 +189,7 @@ is_csv_uploaded: boolean = true;
       return  `with: ${reason}`;
     }
   }
+  addAttachement() {
+
+  }
 }
